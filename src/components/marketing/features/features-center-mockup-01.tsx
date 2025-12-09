@@ -7,8 +7,59 @@ import { FeatureTextFeaturedIconTopCentered } from "./base-components/feature-te
 
 export const FeaturesCenterMockup01 = () => {
     return (
-        <section className="bg-primary py-16 md:py-24">
-            <div className="mx-auto w-full max-w-container px-4 md:px-8">
+        <section className="relative overflow-hidden bg-black py-16 md:py-24">
+            {/* Left blue glow */}
+            <div
+                className="pointer-events-none absolute -left-20 top-[20%] h-[600px] w-[500px] blur-[100px]"
+                style={{
+                    background: `radial-gradient(ellipse 100% 80% at 20% 50%, rgba(37, 138, 197, 0.6) 0%, rgba(37, 138, 197, 0.3) 40%, transparent 70%)`
+                }}
+            />
+            {/* Right blue glow */}
+            <div
+                className="pointer-events-none absolute -right-20 top-[15%] h-[650px] w-[550px] blur-[100px]"
+                style={{
+                    background: `radial-gradient(ellipse 100% 80% at 80% 50%, rgba(37, 138, 197, 0.6) 0%, rgba(37, 138, 197, 0.3) 40%, transparent 70%)`
+                }}
+            />
+            {/* Bottom blue glow for features */}
+            <div
+                className="pointer-events-none absolute -left-10 bottom-[5%] h-[300px] w-[400px] blur-[80px]"
+                style={{
+                    background: `radial-gradient(ellipse 100% 100% at 30% 50%, rgba(37, 138, 197, 0.5) 0%, transparent 60%)`
+                }}
+            />
+            <div
+                className="pointer-events-none absolute -right-10 bottom-[5%] h-[300px] w-[400px] blur-[80px]"
+                style={{
+                    background: `radial-gradient(ellipse 100% 100% at 70% 50%, rgba(37, 138, 197, 0.5) 0%, transparent 60%)`
+                }}
+            />
+
+            {/* Stars - Left side */}
+            <div className="pointer-events-none absolute left-[8%] top-[15%] size-[2px] rounded-full bg-white/90 shadow-[0_0_2px_1px_rgba(255,255,255,0.4)]" />
+            <div className="pointer-events-none absolute left-[12%] top-[22%] size-px rounded-full bg-white/70 shadow-[0_0_1px_0.5px_rgba(255,255,255,0.3)]" />
+            <div className="pointer-events-none absolute left-[5%] top-[28%] size-[3px] rounded-full bg-white shadow-[0_0_3px_1px_rgba(255,255,255,0.5)]" />
+            <div className="pointer-events-none absolute left-[15%] top-[35%] size-px rounded-full bg-white/60 shadow-[0_0_1px_0.5px_rgba(255,255,255,0.2)]" />
+            <div className="pointer-events-none absolute left-[3%] top-[45%] size-[2px] rounded-full bg-white/80 shadow-[0_0_2px_1px_rgba(255,255,255,0.3)]" />
+            <div className="pointer-events-none absolute left-[10%] top-[55%] size-px rounded-full bg-white/50 shadow-[0_0_1px_0.5px_rgba(255,255,255,0.2)]" />
+            <div className="pointer-events-none absolute left-[7%] top-[65%] size-[2px] rounded-full bg-white/70 shadow-[0_0_2px_1px_rgba(255,255,255,0.3)]" />
+
+            {/* Stars - Right side */}
+            <div className="pointer-events-none absolute right-[10%] top-[12%] size-[3px] rounded-full bg-white shadow-[0_0_3px_1px_rgba(255,255,255,0.5)]" />
+            <div className="pointer-events-none absolute right-[6%] top-[20%] size-px rounded-full bg-white/60 shadow-[0_0_1px_0.5px_rgba(255,255,255,0.2)]" />
+            <div className="pointer-events-none absolute right-[14%] top-[30%] size-[2px] rounded-full bg-white/80 shadow-[0_0_2px_1px_rgba(255,255,255,0.3)]" />
+            <div className="pointer-events-none absolute right-[4%] top-[38%] size-px rounded-full bg-white/70 shadow-[0_0_1px_0.5px_rgba(255,255,255,0.2)]" />
+            <div className="pointer-events-none absolute right-[12%] top-[48%] size-[2px] rounded-full bg-white/70 shadow-[0_0_2px_1px_rgba(255,255,255,0.3)]" />
+            <div className="pointer-events-none absolute right-[8%] top-[58%] size-[3px] rounded-full bg-white/90 shadow-[0_0_3px_1px_rgba(255,255,255,0.4)]" />
+            <div className="pointer-events-none absolute right-[5%] top-[68%] size-px rounded-full bg-white/50 shadow-[0_0_1px_0.5px_rgba(255,255,255,0.2)]" />
+
+            {/* Scattered faint stars */}
+            <div className="pointer-events-none absolute left-[25%] top-[8%] size-px rounded-full bg-white/40 shadow-[0_0_1px_0.5px_rgba(255,255,255,0.15)]" />
+            <div className="pointer-events-none absolute right-[22%] top-[75%] size-[2px] rounded-full bg-white/60 shadow-[0_0_2px_1px_rgba(255,255,255,0.25)]" />
+            <div className="pointer-events-none absolute left-[20%] top-[80%] size-px rounded-full bg-white/50 shadow-[0_0_1px_0.5px_rgba(255,255,255,0.2)]" />
+
+            <div className="relative z-10 mx-auto w-full max-w-container px-4 md:px-8">
                 <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
                     <span className="hidden md:flex">
                         <BadgeWithDot color="brand" type="modern" size="lg">
@@ -20,8 +71,8 @@ export const FeaturesCenterMockup01 = () => {
                             Featured Work
                         </BadgeWithDot>
                     </span>
-                    <h2 className="mt-4 text-display-sm font-semibold text-primary md:text-display-md">MTN MoMo Foot Soldiers Leaderboard</h2>
-                    <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
+                    <h2 className="mt-4 text-display-sm font-semibold text-white md:text-display-md">MTN MoMo Foot Soldiers Leaderboard</h2>
+                    <p className="mt-4 text-lg text-white/70 md:mt-5 md:text-xl">
                         A gamified platform to manage and motivate MTN's influencer network. Scroll through the live app below.
                     </p>
                 </div>
@@ -45,7 +96,7 @@ export const FeaturesCenterMockup01 = () => {
                             </div>
                         </div>
                     </div>
-                    <ul className="flex flex-1 flex-wrap justify-center gap-x-8 gap-y-10 lg:flex-nowrap">
+                    <ul className="flex flex-1 flex-wrap justify-center gap-4 md:gap-5 lg:flex-nowrap">
                         {[
                             {
                                 title: "Live leaderboard",
@@ -63,11 +114,12 @@ export const FeaturesCenterMockup01 = () => {
                                 icon: Settings01,
                             },
                         ].map((item) => (
-                            <li key={item.title}>
+                            <li key={item.title} className="flex-1 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
                                 <FeatureTextFeaturedIconTopCentered
                                     icon={item.icon}
                                     title={item.title}
                                     subtitle={item.subtitle}
+                                    darkMode
                                 />
                             </li>
                         ))}

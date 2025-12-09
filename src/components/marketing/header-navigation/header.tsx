@@ -5,8 +5,7 @@ import { useRef, useState } from "react";
 import { ChevronDown } from "@untitledui/icons";
 import { Button as AriaButton, Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
-import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
-import { UntitledLogoMinimal } from "@/components/foundations/logo/untitledui-logo-minimal";
+import { ConvertFlowLogo, ConvertFlowLogoMinimal } from "@/components/foundations/logo/convertflow-logo";
 import { cx } from "@/utils/cx";
 import { DropdownMenuFeatureCard } from "./dropdown-menu-feature-card";
 import { DropdownMenuSimpleWithFooter } from "./dropdown-menu-simple-with-footer";
@@ -119,8 +118,8 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                     )}
                 >
                     <div className="flex flex-1 items-center gap-5">
-                        <UntitledLogo className="h-8 md:max-lg:hidden" />
-                        <UntitledLogoMinimal className="hidden h-8 md:inline-block lg:hidden" />
+                        <ConvertFlowLogo className="h-8 md:max-lg:hidden" />
+                        <ConvertFlowLogoMinimal className="hidden h-8 md:inline-block lg:hidden" />
 
                         {/* Desktop navigation */}
                         <nav className="max-md:hidden">
@@ -129,10 +128,10 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                     <li key={navItem.label}>
                                         {navItem.menu ? (
                                             <AriaDialogTrigger>
-                                                <AriaButton className="flex cursor-pointer items-center gap-0.5 rounded-lg px-1.5 py-1 text-md font-semibold text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-secondary_hover focus-visible:outline-2 focus-visible:outline-offset-2">
+                                                <AriaButton className="flex cursor-pointer items-center gap-0.5 rounded-lg px-1.5 py-1 text-md font-semibold text-white/90 outline-focus-ring transition duration-100 ease-linear hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2">
                                                     <span className="px-0.5">{navItem.label}</span>
 
-                                                    <ChevronDown className="size-4 rotate-0 stroke-[2.625px] text-fg-quaternary transition duration-100 ease-linear in-aria-expanded:-rotate-180" />
+                                                    <ChevronDown className="size-4 rotate-0 stroke-[2.625px] text-white/70 transition duration-100 ease-linear in-aria-expanded:-rotate-180" />
                                                 </AriaButton>
 
                                                 <AriaPopover
@@ -167,7 +166,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                         ) : (
                                             <a
                                                 href={navItem.href}
-                                                className="flex cursor-pointer items-center gap-0.5 rounded-lg px-1.5 py-1 text-md font-semibold text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-secondary_hover focus:outline-offset-2 focus-visible:outline-2"
+                                                className="flex cursor-pointer items-center gap-0.5 rounded-lg px-1.5 py-1 text-md font-semibold text-white/90 outline-focus-ring transition duration-100 ease-linear hover:text-white focus:outline-offset-2 focus-visible:outline-2"
                                             >
                                                 <span className="px-0.5">{navItem.label}</span>
                                             </a>
@@ -179,9 +178,6 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                     </div>
 
                     <div className="hidden items-center gap-3 md:flex">
-                        <Button color="secondary" size={isFloating ? "md" : "lg"}>
-                            Log in
-                        </Button>
                         <Button color="primary" size={isFloating ? "md" : "lg"}>
                             Sign up
                         </Button>
@@ -201,7 +197,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                         >
                             <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path
-                                    className="hidden text-secondary group-aria-expanded:block"
+                                    className="hidden text-white group-aria-expanded:block"
                                     d="M18 6L6 18M6 6L18 18"
                                     stroke="currentColor"
                                     strokeWidth="2"
@@ -209,7 +205,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                     strokeLinejoin="round"
                                 />
                                 <path
-                                    className="text-secondary group-aria-expanded:hidden"
+                                    className="text-white group-aria-expanded:hidden"
                                     d="M3 12H21M3 6H21M3 18H21"
                                     stroke="currentColor"
                                     strokeWidth="2"

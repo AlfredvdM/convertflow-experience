@@ -6,19 +6,64 @@ import { cx } from "@/utils/cx";
 
 export const FeaturesIconsAndImage02 = () => {
     return (
-        <section className="bg-primary py-16 md:py-24">
-            <div className="mx-auto w-full max-w-container px-4 md:px-8">
-                <div className="flex w-full flex-col lg:max-w-3xl">
+        <section className="relative overflow-hidden bg-primary py-16 md:py-24">
+            {/* Left fluid gradient composition */}
+            <div
+                className="pointer-events-none absolute -left-32 top-[10%] h-[500px] w-[600px] rotate-[-15deg] blur-[60px]"
+                style={{
+                    background: `
+                        radial-gradient(ellipse 120% 40% at 10% 25%, rgba(234, 51, 99, 0.55) 0%, transparent 50%),
+                        radial-gradient(ellipse 90% 35% at 20% 50%, rgba(242, 178, 92, 0.5) 0%, transparent 55%),
+                        radial-gradient(ellipse 100% 30% at 15% 75%, rgba(234, 148, 225, 0.45) 0%, transparent 50%),
+                        radial-gradient(ellipse 80% 25% at 30% 90%, rgba(32, 79, 217, 0.4) 0%, transparent 55%)
+                    `
+                }}
+            />
+            {/* Left secondary wave */}
+            <div
+                className="pointer-events-none absolute -left-16 top-[35%] h-[250px] w-[350px] rotate-[10deg] blur-[50px]"
+                style={{
+                    background: `
+                        radial-gradient(ellipse 100% 50% at 25% 50%, rgba(242, 178, 92, 0.4) 0%, transparent 60%),
+                        radial-gradient(ellipse 80% 40% at 40% 70%, rgba(234, 148, 225, 0.35) 0%, transparent 55%)
+                    `
+                }}
+            />
+            {/* Right fluid gradient composition */}
+            <div
+                className="pointer-events-none absolute -right-32 top-[5%] h-[550px] w-[650px] rotate-[12deg] blur-[60px]"
+                style={{
+                    background: `
+                        radial-gradient(ellipse 110% 35% at 90% 20%, rgba(234, 148, 225, 0.55) 0%, transparent 50%),
+                        radial-gradient(ellipse 95% 40% at 80% 45%, rgba(32, 79, 217, 0.45) 0%, transparent 55%),
+                        radial-gradient(ellipse 100% 30% at 85% 70%, rgba(242, 178, 92, 0.5) 0%, transparent 50%),
+                        radial-gradient(ellipse 85% 35% at 75% 90%, rgba(234, 51, 99, 0.45) 0%, transparent 55%)
+                    `
+                }}
+            />
+            {/* Right secondary wave */}
+            <div
+                className="pointer-events-none absolute -right-16 top-[50%] h-[280px] w-[380px] rotate-[-8deg] blur-[50px]"
+                style={{
+                    background: `
+                        radial-gradient(ellipse 90% 45% at 75% 40%, rgba(32, 79, 217, 0.35) 0%, transparent 60%),
+                        radial-gradient(ellipse 100% 50% at 65% 65%, rgba(234, 51, 99, 0.4) 0%, transparent 55%)
+                    `
+                }}
+            />
+
+            <div className="relative z-10 mx-auto w-full max-w-container px-4 md:px-8">
+                <div className="flex w-full flex-col items-center text-center">
                     <span className="text-sm font-semibold text-brand-secondary md:text-md">Featured Work</span>
 
                     <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">James Ralph Co's Rubik's Cube Game</h2>
-                    <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
+                    <p className="mt-4 max-w-3xl text-lg text-tertiary md:mt-5 md:text-xl">
                         A branded puzzle game for CASIO's official Southern Africa distributor — turning a product launch into a 6-month engagement campaign.
                     </p>
                 </div>
 
                 <div className="mt-12 grid grid-cols-1 gap-12 md:mt-16 md:gap-16 lg:grid-cols-2 lg:items-center">
-                    <ul className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-12 lg:grid-cols-1">
+                    <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-1">
                         {[
                             {
                                 title: "500+ game plays",
@@ -36,7 +81,7 @@ export const FeaturesIconsAndImage02 = () => {
                                 icon: RefreshCcw01,
                             },
                         ].map((item) => (
-                            <li key={item.title}>
+                            <li key={item.title} className="rounded-2xl border border-white/20 bg-white/60 p-6 shadow-lg backdrop-blur-xl">
                                 <FeatureTextFeaturedIconLeft
                                     icon={item.icon}
                                     title={item.title}

@@ -84,17 +84,19 @@ export const FeatureTextFeaturedIconTopCentered = ({
     title,
     subtitle,
     footer,
+    darkMode = false,
 }: FeatureTextIcon & {
     color?: "brand" | "gray" | "success" | "warning" | "error";
     theme?: "light" | "gradient" | "dark" | "outline" | "modern";
+    darkMode?: boolean;
 }) => (
     <div className="flex max-w-sm flex-col items-center gap-4 text-center">
         <FeaturedIcon icon={icon} size="lg" color={color} theme={theme} className="hidden md:inline-flex" />
         <FeaturedIcon icon={icon} size="md" color={color} theme={theme} className="inline-flex md:hidden" />
 
         <div>
-            <h3 className="text-lg font-semibold text-primary">{title}</h3>
-            <p className="mt-1 text-md text-tertiary">{subtitle}</p>
+            <h3 className={`text-lg font-semibold ${darkMode ? "text-white" : "text-primary"}`}>{title}</h3>
+            <p className={`mt-1 text-md ${darkMode ? "text-white/70" : "text-tertiary"}`}>{subtitle}</p>
         </div>
 
         {footer}
