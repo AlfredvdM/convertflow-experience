@@ -6,7 +6,7 @@ import { cx } from "@/utils/cx";
 
 export const FeaturesIconsAndImage02 = () => {
     return (
-        <section className="relative overflow-hidden bg-primary py-16 md:py-24">
+        <section id="work" className="relative overflow-hidden bg-primary py-16 md:py-24 scroll-mt-20">
             {/* Left fluid gradient composition */}
             <div
                 className="pointer-events-none absolute -left-32 top-[10%] h-[500px] w-[600px] rotate-[-15deg] blur-[60px]"
@@ -63,7 +63,7 @@ export const FeaturesIconsAndImage02 = () => {
                 </div>
 
                 <div className="mt-12 grid grid-cols-1 gap-12 md:mt-16 md:gap-16 lg:grid-cols-2 lg:items-center">
-                    <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-1">
+                    <ul className="grid grid-cols-1 gap-4 md:gap-5">
                         {[
                             {
                                 title: "500+ game plays",

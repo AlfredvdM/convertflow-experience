@@ -12,27 +12,34 @@ export const FeaturesCenterMockup01 = () => {
             <div
                 className="pointer-events-none absolute -left-20 top-[20%] h-[600px] w-[500px] blur-[100px]"
                 style={{
-                    background: `radial-gradient(ellipse 100% 80% at 20% 50%, rgba(37, 138, 197, 0.6) 0%, rgba(37, 138, 197, 0.3) 40%, transparent 70%)`
+                    background: `radial-gradient(ellipse 100% 80% at 20% 50%, rgba(37, 138, 197, 0.75) 0%, rgba(37, 138, 197, 0.45) 40%, transparent 70%)`
                 }}
             />
             {/* Right blue glow */}
             <div
                 className="pointer-events-none absolute -right-20 top-[15%] h-[650px] w-[550px] blur-[100px]"
                 style={{
-                    background: `radial-gradient(ellipse 100% 80% at 80% 50%, rgba(37, 138, 197, 0.6) 0%, rgba(37, 138, 197, 0.3) 40%, transparent 70%)`
+                    background: `radial-gradient(ellipse 100% 80% at 80% 50%, rgba(37, 138, 197, 0.75) 0%, rgba(37, 138, 197, 0.45) 40%, transparent 70%)`
                 }}
             />
             {/* Bottom blue glow for features */}
             <div
                 className="pointer-events-none absolute -left-10 bottom-[5%] h-[300px] w-[400px] blur-[80px]"
                 style={{
-                    background: `radial-gradient(ellipse 100% 100% at 30% 50%, rgba(37, 138, 197, 0.5) 0%, transparent 60%)`
+                    background: `radial-gradient(ellipse 100% 100% at 30% 50%, rgba(37, 138, 197, 0.65) 0%, transparent 60%)`
                 }}
             />
             <div
                 className="pointer-events-none absolute -right-10 bottom-[5%] h-[300px] w-[400px] blur-[80px]"
                 style={{
-                    background: `radial-gradient(ellipse 100% 100% at 70% 50%, rgba(37, 138, 197, 0.5) 0%, transparent 60%)`
+                    background: `radial-gradient(ellipse 100% 100% at 70% 50%, rgba(37, 138, 197, 0.65) 0%, transparent 60%)`
+                }}
+            />
+            {/* Large bottom-left glow behind features */}
+            <div
+                className="pointer-events-none absolute -left-48 bottom-[-15%] h-[700px] w-[900px] blur-[140px]"
+                style={{
+                    background: `radial-gradient(ellipse 100% 100% at 40% 60%, rgba(37, 138, 197, 0.55) 0%, rgba(37, 138, 197, 0.25) 50%, transparent 75%)`
                 }}
             />
 
@@ -77,7 +84,7 @@ export const FeaturesCenterMockup01 = () => {
                     </p>
                 </div>
 
-                <div className="mt-12 flex flex-col gap-12 md:mt-16 md:gap-24 lg:items-center">
+                <div className="mt-12 flex flex-col gap-8 md:mt-16 md:gap-12 lg:items-center">
                     <div className="flex h-full w-full items-center justify-center md:max-h-204 md:w-full">
                         <div
                             className={cx(
@@ -96,7 +103,7 @@ export const FeaturesCenterMockup01 = () => {
                             </div>
                         </div>
                     </div>
-                    <ul className="flex flex-1 flex-wrap justify-center gap-4 md:gap-5 lg:flex-nowrap">
+                    <ul className="flex flex-col gap-4 md:flex-row md:flex-wrap md:justify-center md:gap-5 lg:flex-nowrap">
                         {[
                             {
                                 title: "Live leaderboard",

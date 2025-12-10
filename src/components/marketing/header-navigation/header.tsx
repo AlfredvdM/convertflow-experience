@@ -1,92 +1,42 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { ChevronDown } from "@untitledui/icons";
 import { Button as AriaButton, Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
-import { Button } from "@/components/base/buttons/button";
-import { ConvertFlowLogo, ConvertFlowLogoMinimal } from "@/components/foundations/logo/convertflow-logo";
 import { cx } from "@/utils/cx";
-import { DropdownMenuFeatureCard } from "./dropdown-menu-feature-card";
-import { DropdownMenuSimpleWithFooter } from "./dropdown-menu-simple-with-footer";
-import { DropdownMenuWithTwoColsAndLinksAndFooter } from "./dropdown-menu-with-two-cols-and-links-and-footer";
 
 type HeaderNavItem = {
     label: string;
     href?: string;
     menu?: ReactNode;
+    isExternal?: boolean;
 };
 
 const headerNavItems: HeaderNavItem[] = [
-    { label: "Products", href: "/products", menu: <DropdownMenuSimpleWithFooter /> },
-    { label: "Services", href: "/Services", menu: <DropdownMenuFeatureCard /> },
-    { label: "Pricing", href: "/pricing" },
-    { label: "Resources", href: "/resources", menu: <DropdownMenuWithTwoColsAndLinksAndFooter /> },
-    { label: "About", href: "/about" },
+    { label: "About", href: "#about" },
+    { label: "My Work", href: "#work" },
+    { label: "Contact", href: "https://calendly.com/alfredvanderm/30min", isExternal: true },
 ];
 
-const footerNavItems = [
-    { label: "About us", href: "/" },
-    { label: "Press", href: "/products" },
-    { label: "Careers", href: "/resources" },
-    { label: "Legal", href: "/pricing" },
-    { label: "Support", href: "/pricing" },
-    { label: "Contact", href: "/pricing" },
-    { label: "Sitemap", href: "/pricing" },
-    { label: "Cookie settings", href: "/pricing" },
-];
-
-const MobileNavItem = (props: { className?: string; label: string; href?: string; children?: ReactNode }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    if (props.href) {
-        return (
-            <li>
-                <a href={props.href} className="flex items-center justify-between px-4 py-3 text-md font-semibold text-primary hover:bg-primary_hover">
-                    {props.label}
-                </a>
-            </li>
-        );
-    }
-
+const MobileNavItem = (props: { className?: string; label: string; href?: string; isExternal?: boolean }) => {
     return (
-        <li className="flex flex-col gap-0.5">
-            <button
-                aria-expanded={isOpen}
-                onClick={() => setIsOpen(!isOpen)}
-                className="flex w-full items-center justify-between px-4 py-3 text-md font-semibold text-primary hover:bg-primary_hover"
+        <li>
+            <a
+                href={props.href}
+                {...(props.isExternal && { target: "_blank", rel: "noopener noreferrer" })}
+                onClick={(e) => {
+                    if (!props.isExternal && props.href?.startsWith("#")) {
+                        e.preventDefault();
+                        const element = document.querySelector(props.href);
+                        element?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                }}
+                className="block rounded-xl px-4 py-3 text-md font-semibold text-white/90 transition-all duration-200 hover:bg-white/10 hover:text-white"
             >
-                {props.label}{" "}
-                <ChevronDown
-                    className={cx("size-4 stroke-[2.625px] text-fg-quaternary transition duration-100 ease-linear", isOpen ? "-rotate-180" : "rotate-0")}
-                />
-            </button>
-            {isOpen && <div>{props.children}</div>}
+                {props.label}
+            </a>
         </li>
-    );
-};
-
-const MobileFooter = () => {
-    return (
-        <div className="flex flex-col gap-8 border-t border-secondary px-4 py-6">
-            <div>
-                <ul className="grid grid-flow-col grid-cols-2 grid-rows-4 gap-x-6 gap-y-3">
-                    {footerNavItems.map((navItem) => (
-                        <li key={navItem.label}>
-                            <Button color="link-gray" size="lg" href={navItem.href}>
-                                {navItem.label}
-                            </Button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <div className="flex flex-col gap-3">
-                <Button size="lg">Sign up</Button>
-                <Button color="secondary" size="lg">
-                    Log in
-                </Button>
-            </div>
-        </div>
     );
 };
 
@@ -113,25 +63,23 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
             <div className="flex size-full max-w-container flex-1 items-center pr-3 pl-4 md:px-8">
                 <div
                     className={cx(
-                        "flex w-full justify-between gap-4",
+                        "flex w-full items-center justify-between gap-4 rounded-2xl bg-white/10 px-4 py-2.5 ring-1 ring-white/20 backdrop-blur-md md:px-6 md:py-3",
                         isFloating && "ring-secondary_alt md:rounded-2xl md:bg-primary md:py-3 md:pr-3 md:pl-4 md:shadow-xs md:ring-1",
                     )}
                 >
-                    <div className="flex flex-1 items-center gap-5">
-                        <ConvertFlowLogo className="h-8 md:max-lg:hidden" />
-                        <ConvertFlowLogoMinimal className="hidden h-8 md:inline-block lg:hidden" />
+                    {/* Logo */}
+                    <img src="https://cdn.prod.website-files.com/68e3d594e9aa869632065083/693978d03635627470c0c723_logo-02.svg" alt="Logo" className="h-10" />
 
-                        {/* Desktop navigation */}
-                        <nav className="max-md:hidden">
-                            <ul className="flex items-center gap-0.5">
+                    {/* Desktop navigation - Centered with pill container */}
+                    <nav className="absolute left-1/2 -translate-x-1/2 max-md:hidden">
+                        <ul className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-white/10 p-1.5 shadow-sm backdrop-blur-md">
                                 {items.map((navItem) => (
                                     <li key={navItem.label}>
                                         {navItem.menu ? (
                                             <AriaDialogTrigger>
-                                                <AriaButton className="flex cursor-pointer items-center gap-0.5 rounded-lg px-1.5 py-1 text-md font-semibold text-white/90 outline-focus-ring transition duration-100 ease-linear hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2">
-                                                    <span className="px-0.5">{navItem.label}</span>
-
-                                                    <ChevronDown className="size-4 rotate-0 stroke-[2.625px] text-white/70 transition duration-100 ease-linear in-aria-expanded:-rotate-180" />
+                                                <AriaButton className="group relative inline-flex cursor-pointer items-center gap-1 rounded-full px-5 py-2 text-sm font-medium text-white/80 outline-focus-ring transition-all duration-300 hover:bg-white/15 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2">
+                                                    {navItem.label}
+                                                    <ChevronDown className="size-3.5 rotate-0 stroke-[2.5px] text-white/60 transition duration-200 ease-linear group-hover:text-white/80 in-aria-expanded:-rotate-180" />
                                                 </AriaButton>
 
                                                 <AriaPopover
@@ -166,21 +114,38 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                         ) : (
                                             <a
                                                 href={navItem.href}
-                                                className="flex cursor-pointer items-center gap-0.5 rounded-lg px-1.5 py-1 text-md font-semibold text-white/90 outline-focus-ring transition duration-100 ease-linear hover:text-white focus:outline-offset-2 focus-visible:outline-2"
+                                                {...(navItem.isExternal && { target: "_blank", rel: "noopener noreferrer" })}
+                                                onClick={(e) => {
+                                                    if (!navItem.isExternal && navItem.href?.startsWith("#")) {
+                                                        e.preventDefault();
+                                                        const element = document.querySelector(navItem.href);
+                                                        element?.scrollIntoView({ behavior: "smooth", block: "start" });
+                                                    }
+                                                }}
+                                                className="group relative inline-flex items-center gap-1 rounded-full px-5 py-2 text-sm font-medium text-white/80 outline-focus-ring transition-all duration-300 hover:bg-white/15 hover:text-white focus:outline-offset-2 focus-visible:outline-2"
                                             >
-                                                <span className="px-0.5">{navItem.label}</span>
+                                                {navItem.label}
                                             </a>
                                         )}
                                     </li>
                                 ))}
                             </ul>
-                        </nav>
-                    </div>
+                    </nav>
 
                     <div className="hidden items-center gap-3 md:flex">
-                        <Button color="primary" size={isFloating ? "md" : "lg"}>
-                            Sign up
-                        </Button>
+                        <a
+                            href="https://calendly.com/alfredvanderm/30min"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold text-gray-900 shadow-lg transition-all duration-500 ease-out hover:shadow-[0_8px_30px_-4px_rgba(234,148,225,0.5)] hover:scale-[1.02] active:scale-[0.98]"
+                        >
+                            {/* Gradient background */}
+                            <span className="absolute inset-0 bg-gradient-to-r from-[#F2B25C] via-[#EA94E1] to-[#F2B25C] bg-[length:200%_100%] transition-all duration-500 ease-out group-hover:bg-[position:100%_0]" />
+                            {/* Shimmer effect */}
+                            <span className="absolute inset-0 opacity-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full group-hover:opacity-100 transition-all duration-700 ease-out" />
+                            {/* Text */}
+                            <span className="relative z-10">Book a Quick Call</span>
+                        </a>
                     </div>
 
                     {/* Mobile menu and menu trigger */}
@@ -216,27 +181,38 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                         </AriaButton>
                         <AriaPopover
                             triggerRef={headerRef}
-                            className="h-calc(100%-72px) scrollbar-hide w-full overflow-y-auto shadow-lg md:hidden"
-                            offset={0}
-                            crossOffset={20}
-                            containerPadding={0}
-                            placement="bottom left"
+                            className="scrollbar-hide w-full overflow-y-auto md:hidden"
+                            offset={8}
+                            crossOffset={0}
+                            containerPadding={16}
+                            placement="bottom"
                         >
                             <AriaDialog className="outline-hidden">
-                                <nav className="w-full bg-primary shadow-lg">
-                                    <ul className="flex flex-col gap-0.5 py-5">
-                                        {items.map((navItem) =>
-                                            navItem.menu ? (
-                                                <MobileNavItem key={navItem.label} label={navItem.label}>
-                                                    {navItem.menu}
-                                                </MobileNavItem>
-                                            ) : (
-                                                <MobileNavItem key={navItem.label} label={navItem.label} href={navItem.href} />
-                                            ),
-                                        )}
+                                <nav className="mx-4 rounded-2xl border border-white/20 bg-black/40 p-4 shadow-2xl backdrop-blur-xl">
+                                    <ul className="flex flex-col gap-1">
+                                        {items.map((navItem) => (
+                                            <MobileNavItem
+                                                key={navItem.label}
+                                                label={navItem.label}
+                                                href={navItem.href}
+                                                isExternal={navItem.isExternal}
+                                            />
+                                        ))}
                                     </ul>
 
-                                    <MobileFooter />
+                                    {/* Book a Quick Call button */}
+                                    <div className="mt-4 border-t border-white/10 pt-4">
+                                        <a
+                                            href="https://calendly.com/alfredvanderm/30min"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group relative block overflow-hidden rounded-full px-5 py-3 text-center text-base font-semibold text-gray-900 shadow-lg transition-all duration-500 ease-out hover:shadow-[0_8px_30px_-4px_rgba(234,148,225,0.5)] hover:scale-[1.02] active:scale-[0.98]"
+                                        >
+                                            <span className="absolute inset-0 bg-gradient-to-r from-[#F2B25C] via-[#EA94E1] to-[#F2B25C] bg-[length:200%_100%] transition-all duration-500 ease-out group-hover:bg-[position:100%_0]" />
+                                            <span className="absolute inset-0 opacity-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full group-hover:opacity-100 transition-all duration-700 ease-out" />
+                                            <span className="relative z-10">Book a Quick Call</span>
+                                        </a>
+                                    </div>
                                 </nav>
                             </AriaDialog>
                         </AriaPopover>
